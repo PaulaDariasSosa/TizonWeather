@@ -388,7 +388,7 @@ public class WeatherAppPanel {
         gbc.gridwidth = 2; // Ocupa dos columnas
         mainWeatherLabel2 = new JLabel("", SwingConstants.CENTER);
         mainWeatherLabel2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Borde más grueso
-        mainWeatherLabel2.setFont(new Font("Arial", Font.BOLD, 28)); // Tamaño de fuente más grande
+        mainWeatherLabel2.setFont(new Font("Arial", Font.BOLD, 18)); // Tamaño de fuente más grande
         mainPanel2.add(mainWeatherLabel2, gbc);
 
         // Crear paneles pequeños para los días siguientes
