@@ -38,8 +38,6 @@ public class WeatherAppPanel {
             estacion1 = new Estacion(38038, "Santa Cruz de Tenerife");
             estacion2 = new Estacion(38038, "Santa Cruz de Tenerife");
 
-            // Crear estaciones (IDs de ejemplo, puedes ajustarlos según los reales)
-
             // Menú desplegable para seleccionar la estación 1
             stationSelector1 = new JComboBox<>();
             for (Observer estacion : modelo.getEstaciones()) {
@@ -78,7 +76,6 @@ public class WeatherAppPanel {
                     GraphContainer1.add(graph1Panel, BorderLayout.CENTER);
                     graphPanel.remove(0);
                     graphPanel.add(GraphContainer1,0);
-                    //graphPanel.add(graph1Panel);
                     graphPanel.revalidate();
                     graphPanel.repaint();
                 }
@@ -103,13 +100,11 @@ public class WeatherAppPanel {
                     GraphContainer2.add(graph2Panel, BorderLayout.CENTER);
                     graphPanel.remove(1);
                     graphPanel.add(GraphContainer2,1);
-                    //graphPanel.add(graph1Panel);
                     graphPanel.revalidate();
                     graphPanel.repaint();
                 }
             });
 
-            // prueba de frame grande
             configureMainPanelSuperior();
             configureMainPanelInferior();
             frame.add(mainPanel, BorderLayout.CENTER);
@@ -119,23 +114,17 @@ public class WeatherAppPanel {
             JPanel infoContainer = new JPanel(new BorderLayout());
             infoContainer.add(stationSelector1, BorderLayout.NORTH); // Agregar JComboBox arriba
             infoContainer.add(info, BorderLayout.CENTER); // Agregar el panel de información aba
-
-            // Ciudad 1
-            //JPanel city1Panel = createCityPanel(new Estacion(38038));
-            //cityPanel.add(city1Panel);
             cityPanel.add(infoContainer);
 
-            // Ciudad 2
-            //JPanel city2Panel = createCityPanel(new Estacion(38017));
-            //cityPanel.add(city2Panel);
+
             JPanel info2 =  updateWeatherViewInferior(estacion2);
-            // Crear un contenedor que combine stationSelector1 y el panel info
+            // Crear un contenedor que combine stationSelector2 y el panel info
             JPanel infoContainer2 = new JPanel(new BorderLayout());
             infoContainer2.add(stationSelector2, BorderLayout.NORTH); // Agregar JComboBox arriba
             infoContainer2.add(info2, BorderLayout.CENTER);
             cityPanel.add(infoContainer2);
-            // Panel derecho: Gráficas
 
+            // Panel derecho: Gráficas
             /// #######################################################################################################
             tipos_graficos1 = new JComboBox<>(new String[]{"Temperaturas", "Viento","Estado del cielo","Temperatura y Viento","Brújula de dirección de viento"});
             tipos_graficos2 = new JComboBox<>(new String[]{"Temperaturas", "Viento","Estado del cielo","Temperatura y Viento","Brújula de dirección de viento"});
@@ -147,11 +136,9 @@ public class WeatherAppPanel {
             GraphContainer1.add(graph1Panel, BorderLayout.CENTER);
             graphPanel.add(GraphContainer1);
             intGrafica1 = 0;
-            // graphPanel.add(graph1Panel);
 
             // Gráfica 2
             JPanel graph2Panel = createGraphPanel(new Estacion(38038, "Santa Cruz de Tenerife"));
-            //graphPanel.add(graph2Panel);
 
             JPanel GraphContainer2 = new JPanel(new BorderLayout());
             GraphContainer2.add(tipos_graficos2, BorderLayout.NORTH); // Agregar JComboBox arriba
@@ -163,7 +150,6 @@ public class WeatherAppPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     int selectedIndex = tipos_graficos1.getSelectedIndex();
-                    // updateWeatherView(graficas.get(selectedIndex));
                     intGrafica1 = selectedIndex;
                     JPanel graph1Panel = graficas.get(selectedIndex).crearGrafico(estacion1.getDatos());
                     JPanel GraphContainer1 = new JPanel(new BorderLayout());
@@ -171,7 +157,6 @@ public class WeatherAppPanel {
                     GraphContainer1.add(graph1Panel, BorderLayout.CENTER);
                     graphPanel.remove(0);
                     graphPanel.add(GraphContainer1,0);
-                    //graphPanel.add(graph1Panel);
                     graphPanel.revalidate();
                     graphPanel.repaint();
                 }
@@ -189,7 +174,6 @@ public class WeatherAppPanel {
                     GraphContainer2.add(graph2Panel, BorderLayout.CENTER);
                     graphPanel.remove(1);
                     graphPanel.add(GraphContainer2,1);
-                    //graphPanel.add(graph1Panel);
                     graphPanel.revalidate();
                     graphPanel.repaint();
                 }
@@ -198,8 +182,6 @@ public class WeatherAppPanel {
             // Agregar los paneles al panel principal
             mainPanel.add(cityPanel);
             mainPanel.add(graphPanel);
-
-
 
             // Configuración final
             frame.add(mainPanel);
@@ -212,13 +194,10 @@ public class WeatherAppPanel {
         // Panel para un gráfico
         JPanel graphPanel = new JPanel(new BorderLayout(10, 10));
 
-
         // Crear una gráfica de ejemplo (puedes cambiarla por la que necesites)
         GraficoTemperaturas graficoTemperaturas = new GraficoTemperaturas();
         JPanel grafico = graficoTemperaturas.crearGrafico(graphTitle.getDatos());
         graphPanel.add(grafico, BorderLayout.CENTER);
-
-
 
         return graphPanel;
     }
